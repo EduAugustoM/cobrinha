@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Cobrinha no Scratch — Apresentação e Guia de Recriação</title>
+  <meta name="description" content="Apresentação baseada no vídeo 'recriando o jogo da cobrinha no Scratch em 1 único vídeo' (Códigos Lucas Leal), com slides passo a passo para recriar o jogo no Scratch.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <main id="deck">
+    <div class="slides" id="slides">
+
+      <!-- ============ 1. CAPA ============ -->
+      <section class="slide cover" data-title="Capa">
+        <canvas id="coverSnake"></canvas>
+        <div class="veil"></div>
+        <div class="eyebrow reveal">Programação com Scratch · Bolsa de Extensão</div>
+        <h1 class="reveal">O Jogo da <span class="grad">Cobrinha</span> no Scratch</h1>
+        <p class="sub reveal">O que o vídeo ensina e um passo a passo para recriar o clássico jogo da cobrinha, bloco por bloco.</p>
+        <div class="meta reveal">
+          <span class="pill"><span class="dot"></span>Parte 1 · O vídeo</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-motion)"></span>Parte 2 · Recriação passo a passo</span>
+          <span class="pill"><span class="dot" style="--c: var(--gold)"></span>Nível iniciante</span>
+        </div>
+      </section>
+
+      <!-- ============ 2. SOBRE O VÍDEO ============ -->
+      <section class="slide" data-title="Sobre o vídeo">
+        <div class="eyebrow reveal">Parte 1 · O vídeo</div>
+        <div class="row fill">
+          <div class="col grow" style="max-width: 760px;">
+            <h2 class="reveal" style="font-size: 54px;">“recriando o jogo da cobrinha no Scratch em 1 único vídeo”</h2>
+            <p class="reveal">Tutorial completo do canal <strong>Códigos Lucas Leal</strong>, que mostra como recriar o jogo da cobrinha (aquele que ficou famoso nos celulares antigos) <strong>usando só o Scratch</strong>, do zero até o jogo funcionando.</p>
+            <div class="row reveal" style="gap: 54px; margin-top: 12px;">
+              <div class="stat"><span class="n">73 mil+</span><span class="l">visualizações</span></div>
+              <div class="stat"><span class="n">jan/2024</span><span class="l">publicação</span></div>
+              <div class="stat"><span class="n">5</span><span class="l">scripts no jogo</span></div>
+            </div>
+            <div class="callout info reveal mt-auto">
+              <b>Público-alvo:</b> iniciantes e crianças. O Scratch é apresentado como “a melhor ferramenta de ensino de programação para iniciantes”.
+            </div>
+          </div>
+          <div class="col grow center">
+            <a class="video-card reveal" id="videoLink" href="https://www.youtube.com/watch?v=XPjuztEGoQo" target="_blank" rel="noopener" style="width: 100%;">
+              <img src="assets/thumb.jpg" alt="Miniatura do vídeo do jogo da cobrinha no Scratch">
+              <div class="play"><span>▶</span></div>
+            </a>
+            <div class="row reveal" style="gap: 12px; flex-wrap: wrap; justify-content: center;">
+              <span class="pill">youtube.com/watch?v=XPjuztEGoQo</span>
+              <a class="pill" id="projectLink" href="https://scratch.mit.edu/projects/946780531/" target="_blank" rel="noopener" style="text-decoration:none;"><span class="dot" style="--c: var(--sc-control)"></span>Projeto original no Scratch</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 3. HISTÓRIA ============ -->
+      <section class="slide" data-title="História do jogo">
+        <div class="eyebrow reveal">Contexto</div>
+        <h2 class="reveal">Um clássico com quase <span class="grad-warm">50 anos</span></h2>
+        <p class="reveal" style="max-width: 1150px;">A ideia é simples e viciante: guiar uma cobra que cresce a cada comida, sem bater em si mesma nem nas paredes. É simples de entender e difícil de dominar, e por isso é um ótimo primeiro projeto de programação.</p>
+        <div class="timeline reveal">
+          <div class="t"><div class="dot">🕹️</div><div class="y">1976</div><p><strong>Blockade</strong>: o fliperama que deu origem à mecânica da “cobra” que deixa um rastro.</p></div>
+          <div class="t"><div class="dot">📱</div><div class="y">1997</div><p><strong>Snake</strong> chega aos celulares <strong>Nokia</strong> e vira febre mundial.</p></div>
+          <div class="t"><div class="dot">🌐</div><div class="y">2016</div><p><strong>Slither.io</strong> leva a ideia para o multijogador online.</p></div>
+          <div class="t"><div class="dot">🐱</div><div class="y">Hoje</div><p>Nós recriamos o jogo no <strong>Scratch</strong>, com blocos e sem digitar código.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ 4. REGRAS ============ -->
+      <section class="slide" data-title="Regras">
+        <div class="eyebrow reveal">Como se joga</div>
+        <h2 class="reveal">As regras do jogo</h2>
+        <div class="row fill">
+          <div class="grid-2 grow" style="align-content: start;">
+            <div class="card reveal" style="--chip: hsl(215 100% 65% / .15); --chip-fg: var(--sc-motion);">
+              <div class="icon">⌨️</div>
+              <h3>Setas do teclado</h3>
+              <p>Mudam a direção da cobra: cima, baixo, esquerda e direita.</p>
+            </div>
+            <div class="card reveal" style="--chip: hsl(352 90% 60% / .15); --chip-fg: var(--apple);">
+              <div class="icon">🍎</div>
+              <h3>Comer a comida</h3>
+              <p>Cada comida vale <strong>+1 ponto</strong> e a cobra fica <strong>1 bloco maior</strong>.</p>
+            </div>
+            <div class="card reveal" style="--chip: hsl(44 100% 60% / .15); --chip-fg: var(--gold);">
+              <div class="icon">💥</div>
+              <h3>Não pode bater</h3>
+              <p>Encostar na <strong>parede</strong> ou no <strong>próprio corpo</strong> mostra “FIM DE JOGO”.</p>
+            </div>
+            <div class="card reveal">
+              <div class="icon">🏆</div>
+              <h3>Objetivo</h3>
+              <p>Fazer o <strong>máximo de pontos</strong> possível.</p>
+            </div>
+          </div>
+          <div class="col center" style="width: 420px;">
+            <div class="keys reveal" id="keysDemo">
+              <div class="k up" data-k="up">▲<small>0°</small></div>
+              <div class="k left" data-k="left">◀<small>-90°</small></div>
+              <div class="k down" data-k="down">▼<small>180°</small></div>
+              <div class="k right" data-k="right">▶<small>90°</small></div>
+            </div>
+            <p class="reveal" style="text-align:center; font-size: 20px;">Cada seta corresponde a uma <strong>direção</strong> do Scratch.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 5. CONCEITOS ============ -->
+      <section class="slide" data-title="Conceitos">
+        <div class="eyebrow reveal">O que se aprende</div>
+        <h2 class="reveal">Conceitos de programação que o jogo usa</h2>
+        <div class="grid-3 reveal" style="margin-top: 6px;">
+          <div class="card" style="--chip: #FFBF0026; --chip-fg: var(--sc-events);"><div class="icon">🚩</div><h3>Eventos</h3><p>Os scripts começam com <strong>“quando a bandeira for clicada”</strong>.</p></div>
+          <div class="card" style="--chip: #FFAB1926; --chip-fg: var(--sc-control);"><div class="icon">🔁</div><h3>Laços de repetição</h3><p>O bloco <strong>“sempre”</strong> faz a cobra andar e verificar colisões o tempo todo.</p></div>
+          <div class="card" style="--chip: #FFAB1926; --chip-fg: var(--sc-control);"><div class="icon">🔀</div><h3>Condicionais</h3><p><strong>“se … então”</strong> decide o que fazer quando uma tecla é pressionada ou algo é tocado.</p></div>
+          <div class="card" style="--chip: #5CB1D626; --chip-fg: var(--sc-sensing);"><div class="icon">👀</div><h3>Sensores</h3><p>Detectam <strong>teclas</strong>, <strong>cores</strong> e <strong>outros atores</strong>.</p></div>
+          <div class="card" style="--chip: #FF8C1A26; --chip-fg: var(--sc-variables);"><div class="icon">🔢</div><h3>Variáveis</h3><p><strong>pontos</strong> guarda a pontuação e também define o tamanho da cobra.</p></div>
+          <div class="card" style="--chip: #9966FF26; --chip-fg: var(--sc-looks);"><div class="icon">🧬</div><h3>Clones</h3><p>Cada pedaço do corpo é um <strong>clone temporário</strong>. É o truque principal do jogo.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ 6. ARQUITETURA ============ -->
+      <section class="slide" data-title="Estrutura do projeto">
+        <div class="eyebrow reveal">Anatomia do projeto</div>
+        <h2 class="reveal">O que tem dentro do projeto</h2>
+        <div class="arch reveal">
+          <div class="card node" style="--c: var(--sc-looks);">
+            <div class="thumb" style="gap: 16px; display:flex; justify-content:center;">
+              <span style="font: 800 22px var(--font); color:#111;">FIM DE JOGO</span>
+            </div>
+            <span class="tag" style="--c: var(--sc-looks); color:#fff;">Palco</span>
+            <h3 style="margin-top: 12px;">Cenários</h3>
+            <ul>
+              <li><strong>jogo</strong>: fundo branco</li>
+              <li><strong>fim</strong>: texto “FIM DE JOGO”</li>
+              <li>Variável global <strong>pontos</strong></li>
+            </ul>
+          </div>
+          <div class="card node" style="--c: var(--snake);">
+            <div class="thumb" style="display:flex; gap: 6px; justify-content:center;">
+              <img src="assets/cobra_corpo.svg" alt="corpo"><img src="assets/cobra_corpo.svg" alt="corpo"><img src="assets/cobra_rosto.svg" alt="rosto da cobra" style="transform: rotate(0deg);">
+            </div>
+            <span class="tag">Ator</span>
+            <h3 style="margin-top: 12px;">cobra</h3>
+            <ul>
+              <li>Fantasias <strong>rosto</strong> e <strong>corpo</strong></li>
+              <li>4 scripts: andar, controlar, clonar, perder</li>
+              <li>Tamanho <strong>30%</strong></li>
+            </ul>
+          </div>
+          <div class="card node" style="--c: var(--apple);">
+            <div class="thumb"><img src="assets/comida_fantasia1.svg" alt="comida" style="height: 46px;"></div>
+            <span class="tag" style="--c: var(--apple); color:#fff;">Ator</span>
+            <h3 style="margin-top: 12px;">comida</h3>
+            <ul>
+              <li>Quadrado vermelho</li>
+              <li>1 script: zerar pontos, sortear lugar, ser comida</li>
+              <li>Tamanho <strong>20%</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout ok reveal" style="margin-top: 26px;">
+          <b>Tudo isso com só 2 atores e 5 scripts.</b> O projeto é pequeno de propósito, para dar para entender cada bloco.
+        </div>
+      </section>
+
+      <!-- ============ 7. A GRANDE SACADA ============ -->
+      <section class="slide" data-title="Truque dos clones">
+        <div class="eyebrow reveal">A grande sacada do vídeo</div>
+        <h2 class="reveal">O corpo é um <span class="grad">rastro de clones</span></h2>
+        <div class="row fill">
+          <div class="col grow" style="max-width: 640px;">
+            <ul class="explain reveal">
+              <li style="--c: var(--snake)"><span class="b">1</span><span>A cada <strong>0,1 s</strong> a cabeça deixa um <strong>clone</strong> de si mesma onde está e anda 28 passos.</span></li>
+              <li style="--c: var(--sc-looks)"><span class="b">2</span><span>O clone vira um quadrado preto (<strong>corpo</strong>) e fica parado.</span></li>
+              <li style="--c: var(--sc-control)"><span class="b">3</span><span>Ele espera <strong>0,1 × pontos</strong> segundos e se apaga.</span></li>
+              <li style="--c: var(--gold)"><span class="b">=</span><span>Resultado: sempre existem <strong>“pontos”</strong> pedaços de corpo. Quanto mais pontos, maior a cobra! 🐍</span></li>
+            </ul>
+          </div>
+          <div class="lifetime grow reveal">
+            <canvas id="lifeCanvas" width="760" height="364"></canvas>
+            <div class="controls">
+              <span class="val" id="lifeVal">pontos = 4</span>
+              <input type="range" id="lifeRange" min="0" max="12" value="4" aria-label="Valor da variável pontos">
+            </div>
+            <p style="font-size: 18px; margin-top: 8px;">Arraste para mudar <code>pontos</code> e veja a cobra crescer. Os números mostram quanto tempo falta para cada clone sumir.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 8. DIVISOR PARTE 2 ============ -->
+      <section class="slide divider" data-title="Parte 2">
+        <div class="big-num">2</div>
+        <div class="eyebrow reveal">Parte 2</div>
+        <h1 class="reveal" style="max-width: 1100px;">Mão na massa: <span class="grad">recriando</span> o jogo</h1>
+        <p class="reveal" style="font-size: 30px; max-width: 900px; margin-top: 24px;">São 8 passos, na mesma ordem do vídeo. Os blocos aparecem exatamente como no projeto original.</p>
+        <div class="row reveal" style="margin-top: 40px; gap: 12px; flex-wrap: wrap;">
+          <span class="pill"><span class="dot" style="--c: var(--sc-events)"></span>Eventos</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-motion)"></span>Movimento</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-looks)"></span>Aparência</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-control)"></span>Controle</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-sensing)"></span>Sensores</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-operators)"></span>Operadores</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-variables)"></span>Variáveis</span>
+        </div>
+      </section>
+
+      <!-- ============ 9. PASSO 0 ============ -->
+      <section class="slide" data-title="Preparação">
+        <div class="step-head reveal"><div class="step-num">0</div><h2>Preparando o ambiente</h2></div>
+        <div class="grid-4 reveal">
+          <div class="card"><div class="icon">🌐</div><h3>Acesse</h3><p>Entre em <strong>scratch.mit.edu</strong> e faça login (para salvar o projeto).</p></div>
+          <div class="card" style="--chip: hsl(215 100% 65% / .15); --chip-fg: var(--sc-motion);"><div class="icon">➕</div><h3>Crie</h3><p>Clique em <strong>Criar</strong> para abrir um projeto novo.</p></div>
+          <div class="card" style="--chip: hsl(352 90% 60% / .15); --chip-fg: var(--apple);"><div class="icon">🗑️</div><h3>Limpe</h3><p>Apague o ator do <strong>gato</strong>, que não vamos usar.</p></div>
+          <div class="card" style="--chip: hsl(44 100% 60% / .15); --chip-fg: var(--gold);"><div class="icon">✏️</div><h3>Nomeie</h3><p>Dê um nome ao projeto, por exemplo <strong>Jogo da cobrinha</strong>.</p></div>
+        </div>
+        <div class="callout info reveal" style="margin-top: 34px;">
+          <b>Dica de sala de aula:</b> peça para os alunos <strong>salvarem a cada passo</strong> (Arquivo → Salvar agora). Se der algo errado, fica fácil voltar.
+        </div>
+      </section>
+
+      <!-- ============ 10. PASSO 1 · ASSETS ============ -->
+      <section class="slide" data-title="Fantasias e cenários">
+        <div class="step-head reveal"><div class="step-num">1</div><h2>Desenhando fantasias e cenários</h2></div>
+        <div class="grid-4 reveal" style="grid-template-columns: repeat(5, 1fr); gap: 18px;">
+          <div class="asset"><div class="img"><img src="assets/cobra_rosto.svg" alt="fantasia rosto"></div><h3 style="font-size:24px;">cobra · rosto</h3><div class="props"><span>quadrado preto</span><span>2 olhos</span><span>olhos à direita</span></div></div>
+          <div class="asset"><div class="img"><img src="assets/cobra_corpo.svg" alt="fantasia corpo"></div><h3 style="font-size:24px;">cobra · corpo</h3><div class="props"><span>quadrado</span><span>contorno #060606</span></div></div>
+          <div class="asset"><div class="img"><img src="assets/comida_fantasia1.svg" alt="fantasia da comida"></div><h3 style="font-size:24px;">comida</h3><div class="props"><span>quadrado</span><span>vermelho</span></div></div>
+          <div class="asset"><div class="img" style="background:#fff;"></div><h3 style="font-size:24px;">palco · jogo</h3><div class="props"><span>fundo branco</span><span>vazio</span></div></div>
+          <div class="asset"><div class="img" style="background:#fff;"><img class="wide" src="assets/Stage_fim.svg" alt="cenário fim de jogo"></div><h3 style="font-size:24px;">palco · fim</h3><div class="props"><span>texto</span><span>“FIM DE JOGO”</span></div></div>
+        </div>
+        <div class="row reveal" style="margin-top: 26px; gap: 24px;">
+          <div class="callout grow"><b>Tamanhos:</b> deixe a <strong>cobra em 30</strong> e a <strong>comida em 20</strong> (campo “Tamanho” do ator). Os quadrados têm ~89 px, então a cobra fica com ~27 px.</div>
+          <div class="callout info grow"><b>Olhos para a direita:</b> no Scratch, a direção 90° aponta para a direita. Desenhe o rosto “olhando” para lá para ele girar certinho.</div>
+        </div>
+      </section>
+
+      <!-- ============ 11. PASSO 2 · VARIÁVEL ============ -->
+      <section class="slide" data-title="Variável pontos">
+        <div class="step-head reveal"><div class="step-num">2</div><h2>Criando a variável <span class="grad-warm">pontos</span></h2></div>
+        <div class="row fill">
+          <div class="col grow">
+            <ul class="explain reveal">
+              <li style="--c: var(--sc-variables)"><span class="b">1</span><span>Abra a categoria <strong>Variáveis</strong> e clique em <strong>Criar uma Variável</strong>.</span></li>
+              <li style="--c: var(--sc-variables)"><span class="b">2</span><span>Dê o nome <code>pontos</code>.</span></li>
+              <li style="--c: var(--sc-variables)"><span class="b">3</span><span>Escolha <strong>“Para todos os atores”</strong>, porque a <strong>comida</strong> muda o valor e a <strong>cobra</strong> lê o valor.</span></li>
+              <li style="--c: var(--sc-variables)"><span class="b">4</span><span>Deixe a caixinha marcada para mostrar o placar no palco.</span></li>
+            </ul>
+          </div>
+          <div class="col grow">
+            <div class="card reveal">
+              <h3>Uma variável, duas funções</h3>
+              <p style="margin-bottom: 14px;">A variável <strong>pontos</strong> é usada de dois jeitos:</p>
+              <div class="grid-2" style="gap: 16px;">
+                <div class="callout ok" style="font-size: 20px;"><b>🏆 Placar</b><br>mostra quantas comidas a cobra comeu.</div>
+                <div class="callout" style="font-size: 20px;"><b>📏 Tamanho</b><br>define quanto tempo cada pedaço do corpo fica na tela.</div>
+              </div>
+            </div>
+            <div class="callout info reveal"><b>Obs.:</b> o Scratch já cria uma variável chamada <code>minha variável</code>. Ela não é usada e pode ser apagada.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 12. PASSO 3 · MOVIMENTO ============ -->
+      <section class="slide" data-title="Movimento da cobra">
+        <div class="step-head reveal"><div class="step-num">3</div><h2>Fazendo a cobra andar</h2><span class="sprite-chip"><img src="assets/cobra_rosto.svg" alt="">ator: cobra</span></div>
+        <div class="row fill">
+          <div class="code-panel reveal" style="width: 640px;">
+            <span class="panel-label">Script 1</span>
+<pre class="blocks">quando @greenFlag for clicado
+mude para a fantasia [rosto v]
+mude para o cenário [jogo v]
+vá para x: (-160) y: (3)
+aponte para a direção (90)
+sempre
+  crie clone de (mim mesmo v)
+  mova (28) passos
+  espere (0.1) seg
+end</pre>
+          </div>
+          <div class="col grow">
+            <ul class="explain reveal">
+              <li style="--c: var(--sc-looks)"><span class="b">🎭</span><span><strong>Reinicia o visual:</strong> cabeça com rosto e cenário “jogo”, apagando o “FIM DE JOGO” da partida anterior.</span></li>
+              <li style="--c: var(--sc-motion)"><span class="b">📍</span><span><strong>Posição inicial</strong> à esquerda (-160, 3), virada para a <strong>direita</strong> (90°).</span></li>
+              <li style="--c: var(--sc-control)"><span class="b">🔁</span><span><strong>Laço do jogo:</strong> deixa um clone, anda 28 passos e espera 0,1 s. É o “relógio” do jogo.</span></li>
+            </ul>
+            <div class="callout reveal mt-auto"><b>Por que 28 passos?</b> A cobra tem ~27 px de largura. Andando 28, a cabeça sai do quadrado onde estava e <strong>não encosta</strong> no clone que acabou de criar.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 13. PASSO 4 · CONTROLES ============ -->
+      <section class="slide" data-title="Controles">
+        <div class="step-head reveal"><div class="step-num">4</div><h2>Controlando com as setas</h2><span class="sprite-chip"><img src="assets/cobra_rosto.svg" alt="">ator: cobra</span></div>
+        <div class="row fill">
+          <div class="code-panel reveal" style="width: 660px;">
+            <span class="panel-label">Script 2</span>
+<pre class="blocks">quando @greenFlag for clicado
+sempre
+  se &lt;tecla (seta para direita v) pressionada?&gt; então
+    aponte para a direção (90)
+  end
+  se &lt;tecla (seta para esquerda v) pressionada?&gt; então
+    aponte para a direção (-90)
+  end
+  se &lt;tecla (seta para cima v) pressionada?&gt; então
+    aponte para a direção (0)
+  end
+  se &lt;tecla (seta para baixo v) pressionada?&gt; então
+    aponte para a direção (180)
+  end
+end</pre>
+          </div>
+          <div class="col grow">
+            <p class="reveal">Um <strong>segundo script</strong> no mesmo ator fica olhando o teclado o tempo todo, <strong>em paralelo</strong> com o script de movimento.</p>
+            <div class="row reveal center" style="gap: 40px; margin: 10px 0;">
+              <div class="keys" id="keysDemo2">
+                <div class="k up" data-k="up">▲<small>0°</small></div>
+                <div class="k left" data-k="left">◀<small>-90°</small></div>
+                <div class="k down" data-k="down">▼<small>180°</small></div>
+                <div class="k right" data-k="right">▶<small>90°</small></div>
+              </div>
+            </div>
+            <div class="callout info reveal mt-auto"><b>Dica:</b> monte o primeiro <code>se</code>, depois clique com o botão direito → <strong>Duplicar</strong> e só troque a tecla e o ângulo.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 14. PASSO 5 · CLONES ============ -->
+      <section class="slide" data-title="Corpo com clones">
+        <div class="step-head reveal"><div class="step-num">5</div><h2>Criando o corpo com clones</h2><span class="sprite-chip"><img src="assets/cobra_corpo.svg" alt="">ator: cobra</span></div>
+        <div class="row fill">
+          <div class="col" style="width: 640px; gap: 24px;">
+            <div class="code-panel reveal">
+              <span class="panel-label">Script 3</span>
+<pre class="blocks">quando eu começar como um clone
+mude para a fantasia [corpo v]
+espere ((0.1) * (pontos)) seg
+apague este clone</pre>
+            </div>
+            <div class="callout ok reveal"><b>Só 4 blocos</b> e a cobra já cresce sozinha conforme os pontos aumentam!</div>
+          </div>
+          <div class="col grow">
+            <ul class="explain reveal">
+              <li style="--c: var(--sc-control)"><span class="b">1</span><span>Esse script <strong>só roda nos clones</strong>, não na cabeça.</span></li>
+              <li style="--c: var(--sc-looks)"><span class="b">2</span><span>O clone troca para a fantasia <strong>corpo</strong> (quadrado preto).</span></li>
+              <li style="--c: var(--sc-operators)"><span class="b">3</span><span>Espera <strong>0,1 × pontos</strong> segundos. Use o bloco verde <code>( ) * ( )</code> de <strong>Operadores</strong>.</span></li>
+              <li style="--c: var(--sc-control)"><span class="b">4</span><span>Depois disso <strong>some</strong>, que é a ponta do rabo saindo.</span></li>
+            </ul>
+            <div class="callout reveal mt-auto"><b>A matemática:</b> sai 1 clone a cada 0,1 s e cada um vive 0,1 × pontos s. Então ficam <strong>pontos</strong> clones na tela ao mesmo tempo. Com 0 pontos, o clone some na hora e só aparece a cabeça.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 15. PASSO 6 · GAME OVER ============ -->
+      <section class="slide" data-title="Fim de jogo">
+        <div class="step-head reveal"><div class="step-num">6</div><h2>Detectando o fim de jogo</h2><span class="sprite-chip"><img src="assets/cobra_rosto.svg" alt="">ator: cobra</span></div>
+        <div class="row fill">
+          <div class="col" style="width: 640px; gap: 24px;">
+            <div class="code-panel reveal">
+              <span class="panel-label">Script 4</span>
+<pre class="blocks">quando @greenFlag for clicado
+sempre
+  se &lt;tocando na cor [#060606]?&gt; então
+    mude para o cenário [fim v]
+    pare [todos v]
+  end
+end</pre>
+            </div>
+            <div class="callout info reveal"><b>Escolhendo a cor:</b> clique no quadradinho de cor do bloco, use o <strong>conta-gotas</strong> e clique no corpo da cobra.</div>
+          </div>
+          <div class="col grow">
+            <div class="card reveal">
+              <h3>🐍 Bater no próprio corpo</h3>
+              <p>O corpo tem contorno na cor <code>#060606</code>. Se a cabeça encostar nele, o cenário vira <strong>“FIM DE JOGO”</strong> e tudo para.</p>
+            </div>
+            <div class="card reveal">
+              <h3>🧱 E a parede?</h3>
+              <p>Não existe bloco de parede! O Scratch <strong>não deixa o ator sair do palco</strong>. Na borda a cabeça fica presa, encosta no clone que acabou de criar e… <strong>fim de jogo</strong>.</p>
+            </div>
+            <div class="callout reveal mt-auto"><b>Atenção:</b> a cor do bloco precisa ser <strong>exatamente</strong> a do corpo. Uma cor parecida não serve.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 16. PASSO 7 · COMIDA ============ -->
+      <section class="slide" data-title="Comida">
+        <div class="step-head reveal"><div class="step-num">7</div><h2>Programando a comida</h2><span class="sprite-chip"><img src="assets/comida_fantasia1.svg" alt="">ator: comida</span></div>
+        <div class="row fill">
+          <div class="code-panel reveal" style="width: 660px;">
+            <span class="panel-label">Script 5</span>
+<pre class="blocks">quando @greenFlag for clicado
+mude [pontos v] para (0)
+vá para (posição aleatória v)
+sempre
+  se &lt;tocando em (cobra v)?&gt; então
+    vá para (posição aleatória v)
+    adicione (1) a [pontos v]
+  end
+end</pre>
+          </div>
+          <div class="col grow">
+            <ul class="explain reveal">
+              <li style="--c: var(--sc-variables)"><span class="b">0</span><span><strong>Zera o placar</strong> no começo de cada partida.</span></li>
+              <li style="--c: var(--sc-motion)"><span class="b">🎲</span><span>Aparece em uma <strong>posição aleatória</strong> do palco.</span></li>
+              <li style="--c: var(--sc-sensing)"><span class="b">👀</span><span>Fica conferindo <strong>sem parar</strong> se a cobra encostou nela.</span></li>
+              <li style="--c: var(--sc-variables)"><span class="b">+1</span><span>Quando a cobra encosta, ela <strong>muda de lugar</strong> e soma <strong>1 ponto</strong>, e a cobra cresce na hora.</span></li>
+            </ul>
+            <div class="callout ok reveal mt-auto"><b>Pronto!</b> Clique na 🚩 bandeira verde e jogue. O jogo está completo. 🎉</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 17. VISÃO GERAL ============ -->
+      <section class="slide" data-title="Visão geral">
+        <div class="eyebrow reveal">Revisão</div>
+        <h2 class="reveal">Como tudo se conecta</h2>
+        <div class="grid-3 reveal" style="grid-template-columns: 1.1fr 1fr 1fr; gap: 22px;">
+          <div class="card" style="border-color: hsl(142 76% 52% / .3);">
+            <span class="tag">cobra · cabeça</span>
+            <ul class="explain" style="margin-top: 18px; gap: 12px;">
+              <li style="--c: var(--sc-control)"><span class="b">1</span><span style="font-size:20px;">Anda 28 passos a cada 0,1 s deixando clones</span></li>
+              <li style="--c: var(--sc-sensing)"><span class="b">2</span><span style="font-size:20px;">Lê as setas e muda a direção</span></li>
+              <li style="--c: var(--apple)"><span class="b">4</span><span style="font-size:20px;">Tocou na cor do corpo → fim de jogo</span></li>
+            </ul>
+          </div>
+          <div class="card" style="border-color: hsl(265 80% 65% / .3);">
+            <span class="tag" style="--c: var(--sc-looks); color:#fff;">cobra · clones</span>
+            <ul class="explain" style="margin-top: 18px; gap: 12px;">
+              <li style="--c: var(--sc-looks)"><span class="b">3</span><span style="font-size:20px;">Viram corpo, vivem 0,1 × pontos s e somem</span></li>
+            </ul>
+            <div class="callout" style="font-size: 18px; margin-top: 18px;"><b>Lê</b> a variável <strong>pontos</strong> →</div>
+          </div>
+          <div class="card" style="border-color: hsl(352 90% 60% / .3);">
+            <span class="tag" style="--c: var(--apple); color:#fff;">comida</span>
+            <ul class="explain" style="margin-top: 18px; gap: 12px;">
+              <li style="--c: var(--sc-variables)"><span class="b">5</span><span style="font-size:20px;">Zera pontos e sorteia o lugar. Se for tocada: troca de lugar e soma +1</span></li>
+            </ul>
+            <div class="callout ok" style="font-size: 18px; margin-top: 18px;"><b>Escreve</b> na variável <strong>pontos</strong></div>
+          </div>
+        </div>
+        <div class="callout info reveal" style="margin-top: 26px;">
+          <b>Ideia principal:</b> os atores <strong>não “conversam” diretamente</strong>. A comida altera <code>pontos</code> e a cobra só lê esse valor. Uma variável compartilhada já basta para ligar as duas partes do jogo.
+        </div>
+      </section>
+
+      <!-- ============ 18. PROBLEMAS COMUNS ============ -->
+      <section class="slide" data-title="Problemas comuns">
+        <div class="eyebrow reveal">Depuração</div>
+        <h2 class="reveal">Deu errado? Veja os problemas mais comuns</h2>
+        <table class="bugs reveal">
+          <thead><tr><th>Sintoma</th><th>Provável causa → solução</th></tr></thead>
+          <tbody>
+            <tr><td>Perde logo no começo</td><td>Os passos estão <strong>menores</strong> que o tamanho da cobra. Use <strong>28 passos</strong> com tamanho <strong>30</strong>, ou diminua o tamanho.</td></tr>
+            <tr><td>A cobra não cresce</td><td>A variável <code>pontos</code> foi criada “só para este ator”. Recrie como <strong>“para todos os atores”</strong>.</td></tr>
+            <tr><td>Bate no corpo e nada acontece</td><td>A cor do bloco <em>tocando na cor</em> está diferente. Use o <strong>conta-gotas</strong> no corpo.</td></tr>
+            <tr><td>A cobra toda fica com rosto</td><td>Esqueceu o <strong>mude para a fantasia [corpo]</strong> no script do clone.</td></tr>
+            <tr><td>“FIM DE JOGO” não sai na nova partida</td><td>Falta o <strong>mude para o cenário [jogo]</strong> no início do Script 1.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ============ 19. DESAFIOS ============ -->
+      <section class="slide" data-title="Desafios">
+        <div class="eyebrow reveal">Vá além</div>
+        <h2 class="reveal">Desafios para turbinar o jogo</h2>
+        <div class="grid-3 reveal">
+          <div class="card" style="--chip: hsl(352 90% 60% / .15); --chip-fg: var(--apple);"><div class="icon">↩️</div><h3>Sem dar ré</h3><p>Hoje a cobra pode virar 180° e bater em si mesma. Bloqueie a seta oposta com <code>se direção = …</code>.</p><span class="tag" style="--c: var(--gold); margin-top: 12px;">médio</span></div>
+          <div class="card" style="--chip: #CF63CF26; --chip-fg: var(--sc-sound);"><div class="icon">🔊</div><h3>Efeito sonoro</h3><p>O projeto já tem o som <strong>“saltar”</strong>. Toque esse som quando a comida for pega.</p><span class="tag" style="margin-top: 12px;">fácil</span></div>
+          <div class="card" style="--chip: hsl(44 100% 60% / .15); --chip-fg: var(--gold);"><div class="icon">🏆</div><h3>Recorde</h3><p>Crie a variável <code>recorde</code> e atualize no fim de jogo se <code>pontos &gt; recorde</code>.</p><span class="tag" style="--c: var(--gold); margin-top: 12px;">médio</span></div>
+          <div class="card" style="--chip: hsl(215 100% 65% / .15); --chip-fg: var(--sc-motion);"><div class="icon">⚡</div><h3>Fica mais rápido</h3><p>Diminua o <code>espere</code> conforme os pontos sobem. Lembre de ajustar também a conta do clone!</p><span class="tag" style="--c: var(--apple); color:#fff; margin-top: 12px;">difícil</span></div>
+          <div class="card" style="--chip: hsl(142 76% 52% / .15);"><div class="icon">🧱</div><h3>Comida na grade</h3><p>Sorteie x e y em <strong>múltiplos de 28</strong> para a comida ficar alinhada com a cobra.</p><span class="tag" style="--c: var(--apple); color:#fff; margin-top: 12px;">difícil</span></div>
+          <div class="card" style="--chip: #9966FF26; --chip-fg: var(--sc-looks);"><div class="icon">🎬</div><h3>Tela inicial</h3><p>Crie um cenário de título com “Pressione espaço para começar” usando <strong>mensagens</strong>.</p><span class="tag" style="--c: var(--gold); margin-top: 12px;">médio</span></div>
+        </div>
+      </section>
+
+      <!-- ============ 20. CHECKLIST ============ -->
+      <section class="slide" data-title="Checklist">
+        <div class="eyebrow reveal">Checklist final</div>
+        <h2 class="reveal">Conferindo o projeto</h2>
+        <div class="row fill">
+          <ul class="checklist grow reveal" id="checklist">
+            <li><span class="box">✓</span><span>Fantasias <strong>rosto</strong> e <strong>corpo</strong> na cobra (tamanho 30)</span></li>
+            <li><span class="box">✓</span><span>Ator <strong>comida</strong> vermelho (tamanho 20)</span></li>
+            <li><span class="box">✓</span><span>Cenários <strong>jogo</strong> e <strong>fim</strong></span></li>
+            <li><span class="box">✓</span><span>Variável <strong>pontos</strong> para todos os atores</span></li>
+            <li><span class="box">✓</span><span>4 scripts na cobra: andar · setas · clone · fim de jogo</span></li>
+            <li><span class="box">✓</span><span>1 script na comida</span></li>
+            <li><span class="box">✓</span><span>Testei: come, cresce, perde no corpo e na parede</span></li>
+          </ul>
+          <div class="col" style="width: 470px;">
+            <div class="card reveal">
+              <h3>🔗 Links úteis</h3>
+              <p style="font-size: 20px; line-height: 1.9;">
+                Vídeo: <a style="color: var(--snake);" href="https://www.youtube.com/watch?v=XPjuztEGoQo" target="_blank" rel="noopener">youtube.com/watch?v=XPjuztEGoQo</a><br>
+                Scratch: <a style="color: var(--snake);" href="https://scratch.mit.edu/" target="_blank" rel="noopener">scratch.mit.edu</a><br>
+                Projeto original: <a style="color: var(--snake);" href="https://scratch.mit.edu/projects/946780531/" target="_blank" rel="noopener">projects/946780531</a>
+              </p>
+            </div>
+            <p class="reveal" style="font-size: 18px;">Clique nos itens para marcar ✓</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 21. ENCERRAMENTO ============ -->
+      <section class="slide cover" data-title="Encerramento">
+        <canvas id="endSnake"></canvas>
+        <div class="veil"></div>
+        <div class="eyebrow reveal">Fim</div>
+        <h1 class="reveal">Agora é com <span class="grad">vocês!</span> 🐍</h1>
+        <p class="sub reveal">Com 2 atores, 5 scripts e uma variável, saímos do zero e chegamos a um jogo clássico completo. O próximo passo é escolher um desafio e deixar o jogo com a cara de vocês.</p>
+        <div class="meta reveal">
+          <span class="pill"><span class="dot"></span>Eventos · Laços · Condicionais</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-looks)"></span>Clones</span>
+          <span class="pill"><span class="dot" style="--c: var(--sc-variables)"></span>Variáveis</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <nav class="hud" aria-label="Navegação dos slides">
+    <button id="btnPrev" title="Anterior (←)">←</button>
+    <span class="count" id="count">1 / 1</span>
+    <button id="btnNext" title="Próximo (→)">→</button>
+    <button id="btnFull" title="Tela cheia (F)">⛶</button>
+    <span style="font-size: 13px; color: var(--muted); margin-left: 8px;"><span class="kbd">←</span> <span class="kbd">→</span> navegar · <span class="kbd">F</span> tela cheia · <span class="kbd">Ctrl</span>+<span class="kbd">P</span> exportar PDF</span>
+  </nav>
+
+  <script src="scratchblocks.min.js"></script>
+  <script src="translations-all.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
